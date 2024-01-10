@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card container-fluid py-3  text-center">
+<h1 class ="mb-5 text-center">{{ question.question_text }}</h1>
+
+<ul class ="list-group mb-3 poll-container">
+	{% for choice in question.choice_set.all %}
+	<div class ="list-group-item ">
+		{{ choice.choice_text }} <span class ="badge badge-success float-right">{{ choice.votes }}
+			vote{{ choice.votes | pluralize }}</span>
+		</div>
+	{% endfor %}
+</ul>
+<div class="container-fluid ">
+	<a class="btn  p-3   text-white" style="background-color: #120608;" href ="{% url 'votingApp:index' %}">Back To Polls</a>
+	<a class ="btn  p-3  text-white" style="background-color: #4e4345;"  href ="{% url 'votingApp:detail' question.id %}">Vote again?</a>
+</div>
+</div>
+{% endblock %}
